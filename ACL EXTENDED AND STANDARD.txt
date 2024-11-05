@@ -1,0 +1,50 @@
+EXTENDED ACL
+An Extended ACL (Extended Access Control List) is an access control mechanism in computer networks that uses IP addresses, ports, and protocols to allow or block traffic. Compared to a standard ACL, an extended ACL provides a wider range of criteria to control traffic, including details such as source address, destination address, port number, and specific protocols.
+With the EXTENDED ACL we have blocked the SERVER-PT APP from communicating with other rooms in the auction but only with the ADMIN room.
+
+
+Router3 Configuration:
+
+R3(config)#access-list 101 deny tcp 192.168.53.0 0.0.0.15 host 203.0.114.3 eq www
+R3(config)#access-list 101 deny tcp 192.198.50.0 0.0.0.127 host 203.0.114.3 eq www
+R3(config)#access-list 101 permit ip any any
+R3(config)#int gig 0/0
+R3(config-if)#ip access-group 101 in
+R3(config-if)#int gig 0/1
+R3(config-if)#ip access-group 101 in
+R3(config-if)#
+
+
+Router2 Configuration:
+
+R2(config)#access-list 101 deny tcp 192.168.51.0 0.0.0.63 host 203.0.114.3 eq www
+R2(config)#access-list 101 deny tcp 192.168.52.0 0.0.0.31 host 203.0.114.3 eq www
+R2(config)#access-list 101 permit ip any any
+R2(config)#int gig 0/1
+R2(config-if)#ip access-group 101 in
+R2(config-if)#int GIG 0/0
+R2(config-if)#ip access-group 101 IN
+R2(config-if)#EXIT
+
+------------------------------------
+
+ACL STANDARD
+A Standard ACL (Access Control List) is a mechanism used in network devices to control the direction of traffic based on the source address or destination address of packets. In the context of Cisco and many network systems, a standard ACL uses IP addresses as criteria to allow or block traffic.
+In the project we have blocked traffic from two auction rooms, so that the REGISTRATION room would not communicate with the BIDDING room, but these two rooms could communicate with the other rooms in the auction.
+
+
+Router3 Configuration:
+
+R3(config)#access-list 1 deny 192.168.51.0 0.0.0.63
+R3(config)#access-list 1 permit any
+R3(config)#int gig 0/1
+R3(config-if)#ip access-group 1 out
+
+------------------------------------
+
+Some of the commands we used to verify functionality and troubleshoot ACL are:
+ - show access-lists, 
+ - show access-lists <acl number>, 
+ - show ip access-lists, 
+ - show ip interface <interface> | include access-list, 
+ - show ip traffic | include access-lists
