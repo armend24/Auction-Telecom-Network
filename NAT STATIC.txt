@@ -1,0 +1,22 @@
+NAT STATIC 
+Static Network Address Translation (NAT) is a technique employed to map a private IP address to a public IP address in a fixed manner. This is achieved to facilitate communication from external sources to a private address within a given network.
+
+R1(config)#ip nat inside source static 7.0.0.2 203.0.114.2
+R1(config)#ip nat inside source static 7.0.0.3 203.0.114.3
+R1(config)#ip nat inside source static 7.0.0.4 203.0.114.4
+R1(config)#ip nat inside source static 7.0.0.5 203.0.114.5
+R1(config)#ip nat inside source static 7.0.0.6 203.0.114.6
+R1(config)#
+R1(config)#int gig 0/1
+R1(config-if)#ip nat inside 
+R1(config-if)#int gig 0/0
+R1(config-if)#ip nat outside 
+R1(config-if)#int se 0/0/1
+%Invalid interface type and number
+R1(config)#int se 0/1/0
+R1(config-if)#ip nat outside 
+R1(config-if)#
+
+Some of the commands we used to verify functionality:
+ - show ip nat translations
+ - show ip nat statistics
