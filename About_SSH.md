@@ -5,8 +5,8 @@ Below is the SSH(Secure Shell) configuration.
 
 R1(config)#banner motd 'Welcome to the inner core of the Top Router'
 R1(config)#ip domain-name admin.org
-R1(config)#username benita secret maloku
-R1(config)#username armend secret bytyqi
+R1(config)#username benita secret Maloku
+R1(config)#username armend secret Bytyqi
 R1(config)#service password-encryption 
 R1(config)#crypto key generate rsa
 The name for the keys will be: R1.admin.org
@@ -28,4 +28,9 @@ R1(config-line)#
 Some of the commands we used to ensure functionality:
 -show ssh
 -show crypto key mypubkey rsa
+
+PC PT - Desktop - Command Prompt:
+C:\> ssh -l <username> <ip address>
+
+Password: <secret>
 
