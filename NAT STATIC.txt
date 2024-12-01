@@ -1,5 +1,6 @@
 NAT STATIC 
 Static Network Address Translation (NAT) is a technique employed to map a private IP address to a public IP address in a fixed manner. This is achieved to facilitate communication from external sources to a private address within a given network.
+Below is the Static Network Address Translation (NAT)) configuration.
 
 R1(config)#ip nat inside source static 7.0.0.2 203.0.114.2
 R1(config)#ip nat inside source static 7.0.0.3 203.0.114.3
