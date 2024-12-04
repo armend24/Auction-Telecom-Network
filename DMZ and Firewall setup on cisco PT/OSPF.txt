@@ -1,0 +1,12 @@
+OSPF
+Firewall#
+Firewall#conf t
+Firewall(config)#router ospf 1
+Firewall(config-router)#router-id 2.1.2.1
+Firewall(config-router)#network 20.20.0.0 255.255.255.0 area 0
+Firewall(config-router)#network 7.0.0.0 255.0.0.0 area 0
+Firewall(config-router)#network 10.10.0.0 255.255.255.0 area 0
+
+
+Firewall(config)#route outside 0.0.0.0 0.0.0.0 10.10.0.2
+Firewall(config)#

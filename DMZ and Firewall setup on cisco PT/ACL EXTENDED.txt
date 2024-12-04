@@ -1,0 +1,28 @@
+ACL EXTENDED
+Firewall#conf t
+Firewall(config)#access-l
+Firewall(config)#access-list DMZ-ACCESS ex
+Firewall(config)#access-list DMZ-ACCESS extended permit icmp any any
+Firewall(config)#access-list DMZ-ACCESS extended permit tcp any any eq 80
+Firewall(config)#access-list DMZ-ACCESS extended permit tcp any any eq 8080
+Firewall(config)#access-list DMZ-ACCESS extended permit tcp any any eq 53
+Firewall(config)#access-list DMZ-ACCESS extended permit udp any any eq 53
+Firewall(config)#access-list DMZ-ACCESS extended permit udp any any eq 67
+Firewall(config)#access-list DMZ-ACCESS extended permit udp any any eq 68
+Firewall(config)#
+Firewall(config)#access-group DMZ-ACCESS in interface DMZ
+Firewall(config)#
+Firewall(config)#access-l
+Firewall(config)#access-list INTERNET-ACCESS extended permit tcp any any 
+Firewall(config)#access-list INTERNET-ACCESS extended permit tcp any any eq 53
+Firewall(config)#access-list INTERNET-ACCESS extended permit udp any any eq 53
+Firewall(config)#access-list INTERNET-ACCESS extended permit icmp any any 
+Firewall(config)#access-list INTERNET-ACCESS extended permit tcp any any eq 80
+Firewall(config)#access-list INTERNET-ACCESS extended permit tcp any any eq 8080
+Firewall(config)#access-group INTERNET-ACCESS in interface OUTSIDE
+
+Firewall(config)#access-list INSIDE-ACCESS extended permit tcp any any eq 80
+Firewall(config)#access-group INSIDE-ACCESS in interface INSIDE
+
+R-INSIDE(config)#int gig0/0
+R-INSIDE(config-if)#IP HELPer-address 7.0.0.5

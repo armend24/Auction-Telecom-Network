@@ -1,0 +1,10 @@
+SSH
+Firewall#conf t
+Firewall(config)#crypto key generate rsa modulus 1024
+WARNING: You have a RSA keypair already defined named <Default-RSA-Key>.
+
+Do you really want to replace them? [yes/no]: yes
+Keypair generation process begin. Please wait...
+Firewall(config)#ssh 7.0.0.0 255.0.0.0 DMZ
+Firewall(config)#ssh timeout 3
+Firewall(config)#aaa authentication ssh console loCAL 

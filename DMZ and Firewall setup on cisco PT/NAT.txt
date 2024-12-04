@@ -1,0 +1,12 @@
+NAT
+Firewall(config)#object network INSIDE-OUT
+Firewall(config-network-object)#subnet 192.168.49.0 255.255.255.0
+Firewall(config-network-object)#nat (INSIDE,OUTSIDE) dynamic interface 
+Firewall(config-network-object)#
+Firewall(config-network-object)#exit
+Firewall#
+Firewall#conf t
+Firewall(config)#object network DMZ-OUT
+Firewall(config-network-object)#subnet 7.0.0.0 255.0.0.0
+Firewall(config-network-object)#nat (DMZ,OUTSIDE) dynamic interface 
+Firewall(config-network-object)#exit
